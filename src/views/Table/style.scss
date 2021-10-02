@@ -1,0 +1,148 @@
+td {
+    text-align: left;
+}
+
+.stars {
+    width: fit-content;
+}
+
+.result {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid silver;
+    background-color: #f6f8fa;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+
+    &:visited {
+        color: #24292f
+    }
+
+    &:link {
+        color: #24292f
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.profile_section {
+    text-align: left;
+    width: 70%;
+    .tabs{
+        text-align: left;
+        margin-top: 30px;
+        span{
+            display: block;
+            padding:8px 20px;
+            transition:all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            &:hover{
+                cursor: pointer;
+            }
+            &.active_tab{
+                border-bottom: 2px solid #fd8c73;
+               
+            }
+        }
+        
+        
+    }
+    
+    >div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .avatar {
+            border: 1px solid silver;
+            border-radius: 4px;
+            padding: 2px;
+        }
+
+        .information {
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            h2 {
+                font-weight: bold;
+                color: #24292f;
+            }
+            ul {
+                padding: 5px;
+                list-style-type: none;
+                display: flex;
+                flex-direction: row;
+                padding: 0;
+                font-size: 14px;
+
+                li {
+                    display: flex;
+                    margin-right: 12px;
+
+                    img {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.result_table {
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .repos_table {
+
+        border-radius: 5px;
+        overflow: hidden;
+        width: fit-content;
+        width: 70%;
+        text-align: left;
+        display: grid;
+        grid-template-columns: auto auto;
+        thead{
+            background-color: #23292f;
+            color:silver;
+            th{
+                padding:10px 20px;
+                min-width: 100px;
+
+            }
+        }
+        table{
+            td{
+                padding:8px 20px 0 20px ;
+                img{
+                    margin-right: 5px;
+                }
+                
+            }
+            tr{
+                &:nth-child(even){
+                    background-color: #f6f6f6;
+                }
+            }
+            .stars *{
+                display: inline-block;
+            }
+        }
+        .repos_card{
+            border:1px solid silver;
+            padding:16px;
+            border-radius: 5px;
+        }
+    }
+    
+}

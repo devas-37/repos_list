@@ -1,30 +1,36 @@
 <template>
-  <router-view />
+  <div class="content">
+    <Header
+      :lang="lang"
+      @onChange="changeLanguage"
+    />
+    <router-view />
+  </div>
 </template>
-
+<script>
+import Header from './components/Header.vue'
+export default {
+    components:{
+        Header,
+    },
+    data(){
+        return{
+            lang:'RUS',
+        }
+    },
+    computed:{
+        getImgUrl(lang) {
+            var images = require.context('./assets/flags/', false, /\.svg$/)
+            return images('./' + lang + '.svg')
+        },
+    },
+    methods:{
+        changeLanguage(lang){
+            this.lang=lang
+        },
+    },
+}
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+@import "app.scss"
 </style>

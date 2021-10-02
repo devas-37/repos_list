@@ -1,8 +1,26 @@
 import { createStore } from 'vuex';
 
 export default createStore({
-    state: {},
-    mutations: {},
-    actions: {},
-    modules: {},
+    state: {
+        repositories:[],
+        organisation:[],
+
+    },
+    mutations: {
+        setRepositories:(state,payload)=>{
+            state.repositories=payload
+            state.fullName=payload.full_name
+        },
+        setOrganisation:(state,payload)=>{
+            state.organisation=payload
+        },
+    },
+    getters:{
+        Repositories:(state)=>{
+            return state.repositories
+        },
+        Organisation:(state)=>{
+            return state.organisation
+        },
+    },
 });

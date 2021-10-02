@@ -1,7 +1,7 @@
 <template>
   <div class="logo my-5">
     <img
-      src="../../assets/logo-github.svg"
+      src="../../assets/octat.svg"
       alt="GitHub logo"
     >
   </div>
@@ -24,18 +24,41 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios';
+import { mapGetters } from 'vuex'
 export default {
     name: 'Home',
     data() {
-        '';
+        return{
+            orgName:'',
+        }
+    },
+    computed:{
+        ...mapGetters(['getRepositories','getOrganisation']),
     },
     methods: {
         fetchOrgs() {
+            if (this.orgsName) {
+                axios
+                    .get('https://api.github.com/users/' + this.orgsName)
+                    .then((res) => {
+                        if (res.data){
+                            this.$store.commit('setOrganisation',res.data)
+                            this.fetchRepositories()
+                        }
+                    }).catch((res)=>{
+                        console.log(res)
+                    });
+            }
+        },
+        fetchRepositories(){
             axios
-                .get('https://api.github.com/users/' + this.orgsName + '/repos')
+                .get('https://api.github.com/users/' + this.orgsName+'/repos')
                 .then((res) => {
-                    console.log(res);
-                });
+                    if (res.data){
+                        console.log()
+                        this.$router.push('/table')
+                    }
+                })
         },
     },
 };
