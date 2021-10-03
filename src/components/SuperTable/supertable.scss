@@ -44,7 +44,7 @@
                 }
                 &.repos_name {
                     width: 20%;
-                    font-size: 16px;
+                    font-size: 14px;
                     font-weight: bold;
 
                     a {
@@ -60,5 +60,11 @@
             border: 1px solid silver;
             padding: 16px;
             border-radius: 5px;
+        }
+    }
+
+    @media screen and (max-width:790px){
+        table{
+            visibility: hidden;
         }
     }

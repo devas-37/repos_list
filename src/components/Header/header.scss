@@ -1,8 +1,7 @@
-.header {
+.container-fluid {
     user-select: none;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     padding: 12px 24px;
-    width: 100%;
     background: #003449;
     display: flex;
     flex-direction: row;
@@ -22,11 +21,10 @@
         text-decoration: none;
     }
     .language {
+      text-align: right;
       color: white;
       float: right;
       position: relative;
-      margin-right: 20px;
-      padding: 0 16px;
       vertical-align: middle;
       min-width: 100px;
       >span{

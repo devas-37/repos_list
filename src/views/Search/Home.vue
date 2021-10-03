@@ -6,34 +6,28 @@
     >
   </div>
   
-  <div class="container">
-    <div
-      v-if="invalid"
-      class="validate_msg"
+ 
+  <div
+    class="input-group w-25"
+  >
+    <input
+      v-model="orgName"
+      class="form-control"
+      :class="{'invalidate':invalid===true}"
+      :placeholder="$t('placeholder')"
+      @keypress.enter="fetchOrgs"
+      @keydown="invalid=false"
     >
-      <span>Invalid organisation name</span>
-    </div>
-    <div class="search">
-      <input
-        v-model="orgName"
-        class="form-control w-50"
-        :class="{'invalidate':invalid===true}"
-        :placeholder="$t('placeholder')"
-        @keypress.enter="fetchOrgs"
-        @keydown="invalid=false"
-      >
-      <button
-        class="btn btn-primary ms-2"
-        @click="fetchOrgs"
-      >
-        {{ $t('search') }}
-      </button>
-    </div>
+    <button
+      class="btn btn-outline-primary"
+      type="button"
+    >
+      {{ $t('search') }}
+    </button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from 'axios';
 import { mapGetters } from 'vuex'
 export default {

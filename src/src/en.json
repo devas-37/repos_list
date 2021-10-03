@@ -7,5 +7,7 @@
   "t3":"Language",
   "t4":"Stars",
   "tab1":"Table",
-  "tab2":"Card"
+  "tab2":"Card",
+  "filter":"Filter",
+  "filter_btn":"Clear"
 }

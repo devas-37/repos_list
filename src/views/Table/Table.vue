@@ -1,59 +1,73 @@
 <template>
-  <div class="container">
+  <div class="container py-4 px-0">
     <div class="profile_section">
-      <div>
-        <div class="avatar">
-          <img
-            :src="Organisation.avatar_url"
-            alt="Avatar"
-            width="100"
-          >
-        </div>
+      <div class="avatar">
+        <img
+          :src="Organisation.avatar_url"
+          alt="Avatar"
+          width="100"
+        >
+      </div>
 
-        <div class="information">
-          <h2 class="my-0">
-            <a :href="'https://github.com/'+Organisation.login">{{ Organisation.name }}</a>
-          </h2>
-          <span
-            class="mb-1"
-          >
-            {{ Organisation.bio }}
-          </span>
-          <ul>
-            <li>
-              <img
-                src="../../assets/location.svg"
-                alt="Location"
-                width="16"
-              >
-              {{ Organisation.location }}
-            </li>
-            <li>
-              <img
-                src="../../assets/link.svg"
-                alt="Location"
-                width="16"
-              >
-              <a
-                :href="Organisation.blog"
-                target="_blank"
-              >{{ Organisation.blog }}</a>
-            </li>
-          </ul>
-        </div>
+      <div class="information">
+        <h2 class="my-0">
+          <a :href="'https://github.com/'+Organisation.login">{{ Organisation.name }}</a>
+        </h2>
+        <span
+          class="mb-1"
+        >
+          {{ Organisation.bio }}
+        </span>
+        <ul>
+          <li>
+            <img
+              src="../../assets/location.svg"
+              alt="Location"
+              width="16"
+            >
+            {{ Organisation.location }}
+          </li>
+          <li>
+            <img
+              src="../../assets/link.svg"
+              alt="Location"
+              width="16"
+            >
+            <a
+              :href="Organisation.blog"
+              target="_blank"
+            >{{ Organisation.blog }}</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <div class="container tabs">
-    <span
-      :class="{'active_tab':activeTab===1}"
-      @click="activeTab=1"
-    >{{ $t('tab1') }}</span>
-    <span
-      :class="{'active_tab':activeTab===2}"
-      @click="activeTab=2"
-    >{{ $t('tab2') }}</span>
+  <div class="container search_bar">
+    <div class="d-flex">
+      <div
+        class="input-group"
+      >
+        <input
+          v-model="filter"
+          class="form-control"
+          :placeholder="$t('filter')"
+          @keypress.esc="filter=''"
+        >
+        <button
+          class="btn btn-success"
+        >
+          {{ $t('filter_btn') }}
+        </button>
+      </div>
+      <button
+        v-if="filter"
+        class="btn btn-warning ms-2"
+        @click="filter=''"
+      >
+        {{ $t('clr_btn') }}
+      </button>
+    </div>
     <div class="paginate">
       <pagination
         :max="Organisation.public_repos"
@@ -64,8 +78,7 @@
   </div>
 
   <div
-    v-if="activeTab===1"
-    class="result_table"
+    class="w-100"
   >
     <super-table :data="Repositories" />
   </div>
@@ -84,6 +97,7 @@ export default {
     data(){
         return{
             activeTab:1,
+            filter:'',
         }
     },
     computed:{

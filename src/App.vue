@@ -1,9 +1,9 @@
 <template>
+  <Header
+    :lang="lang"
+    @onChange="changeLanguage"
+  />
   <div class="content">
-    <Header
-      :lang="lang"
-      @onChange="changeLanguage"
-    />
     <router-view />
   </div>
 </template>
