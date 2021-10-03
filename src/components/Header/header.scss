@@ -7,14 +7,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    h4{
-      padding:0;
-      display: inline;
-      margin-left: 16px;
-      color:white;
-    }
     img {
       float: left;
+      margin-right: 10px;
     }
     .home{
         color:white;
@@ -59,5 +54,10 @@
           }
         }
       }
+    }
+  }
+  @media screen and (max-width:576px) {
+    .home{
+    display: none;
     }
   }

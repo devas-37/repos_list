@@ -6,29 +6,32 @@
     >
   </div>
   
-  <div
-    v-if="invalid"
-    class="w-25 mb-1 validate_msg"
-  >
-    {{ $t('validate_msg') }}
-  </div>
-  <div
-    class="input-group w-25"
-  >
-    <input
-      v-model="orgName"
-      class="form-control"
-      :class="{'invalidate':invalid===true}"
-      :placeholder="$t('placeholder')"
-      @keypress.enter="fetchOrgs"
-      @keydown="invalid=false"
+  
+  <div class="container">
+    <div
+      v-if="invalid"
+      class="mb-1 validate_msg"
     >
-    <button
-      class="btn btn-outline-primary"
-      @click="fetchOrgs"
+      {{ $t('validate_msg') }}
+    </div>
+    <div
+      class="input-group"
     >
-      {{ $t('search') }}
-    </button>
+      <input
+        v-model="orgName"
+        class="form-control"
+        :class="{'invalidate':invalid===true}"
+        :placeholder="$t('placeholder')"
+        @keypress.enter="fetchOrgs"
+        @keydown="invalid=false"
+      >
+      <button
+        class="btn btn-outline-primary"
+        @click="fetchOrgs"
+      >
+        {{ $t('search') }}
+      </button>
+    </div>
   </div>
 </template>
 

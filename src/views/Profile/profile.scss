@@ -22,7 +22,7 @@ a {
     text-align: left;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 
     .avatar {
         border: 1px solid silver;
@@ -83,3 +83,31 @@ a {
     }
 }
 
+@media screen and (max-width:576px) {
+    .address{
+        display: none;
+    }
+    
+    .profile_section{
+        padding-left: 30px;
+        flex-direction: column;
+        .avatar{
+            border:none;
+            img{
+                
+                width: 80px;
+                margin-bottom: 10px;
+            }
+        }
+        .information{
+            padding: 0;
+            text-align: left;
+        }
+    }
+   
+}
+@media screen and (max-width:768px) {
+    .paginate{
+        display: none !important;
+    }
+}

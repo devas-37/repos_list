@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-4 px-0">
+  <div class="container-sm py-4 px-0">
     <div class="profile_section">
       <div class="avatar">
         <img
@@ -10,15 +10,15 @@
       </div>
 
       <div class="information">
-        <h2 class="my-0">
+        <h2 class="my-0 fs-4">
           <a :href="'https://github.com/'+Organisation.login">{{ Organisation.name }}</a>
         </h2>
         <span
-          class="mb-1"
+          class="mb-1 fs-6"
         >
           {{ Organisation.bio }}
         </span>
-        <ul>
+        <ul class="address">
           <li>
             <img
               src="../../assets/location.svg"
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="container search_bar">
+  <div class="container-sm search_bar">
     <div class="d-flex">
       <div
         class="input-group"

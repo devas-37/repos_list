@@ -6,14 +6,14 @@
         alt="Github"
         width="32"
       >
-      <h4>
+      <span class="fs-4">
         <router-link
           class="home"
           to="/"
         >
           {{ $t("title") }}
         </router-link>
-      </h4>
+      </span>
     </div>
  
     <div class="language">

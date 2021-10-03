@@ -1,4 +1,4 @@
-    .container {
+    .container-sm {
         text-align: left;
         display: grid;
         border: 1px solid #003449;
@@ -24,6 +24,20 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                 }
+
+                .stars {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        margin-right: 5px;
+                    }
+
+                    * {
+                        display: inline-block;
+                    }
+                }
+
                 .lang {
                     width: 20%;
                 }
@@ -32,16 +46,7 @@
             td {
                 padding: 14px 20px;
                 border-top: 1px solid #efefef;
-                .stars {
-                    display: flex;
-                    align-items: center;
-                    img{
-                        margin-right: 10px;
-                    }
-                    * {
-                        display: inline-block;
-                    }
-                }
+
                 &.repos_name {
                     width: 20%;
                     font-size: 14px;
@@ -56,6 +61,45 @@
 
 
         }
+
+        .card-container {
+            display: none;
+            grid-template-columns: auto auto;
+            gap: 8px;
+
+            .card {
+                padding: 16px;
+                color: #57606a;
+
+                a {
+                    font-weight: bold;
+                    color: #00b0d3;
+                }
+
+                .badge {
+                    color: #57606a;
+                    bordeR: 1px solid silver
+                }
+
+                .description {
+                    margin-top: 8px;
+                    font-size: 14px;
+                    flex:1;
+                }
+
+                .info {
+                    margin-top: 8px;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        vertical-align: middle;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
         .repos_card {
             border: 1px solid silver;
             padding: 16px;
@@ -63,8 +107,25 @@
         }
     }
 
-    @media screen and (max-width:790px){
-        table{
-            visibility: hidden;
+    @media screen and (max-width:790px) {
+        table {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width:992px) {
+        .container-sm {
+            table{
+                display: none;
+            }
+            .card-container {
+                display: grid;
+                grid-template-columns: auto;
+                
+                .cards {
+                    border: 1px solid red;
+                    height: fit-content;
+                }
+            }
         }
     }
