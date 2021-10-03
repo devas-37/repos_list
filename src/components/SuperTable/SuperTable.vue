@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(repository, index) in data"
+          v-for="(repository, index) in Repos"
           :key="index"
         >
           <td class="repos_name">
@@ -61,9 +61,19 @@ export default {
             type:Array,
             default:()=>[],
         },
+        filter:{
+            type:String,
+            default:()=>'',
+        },
     },
     computed:{
         ...mapGetters(['Organisation']),
+        Repos(){
+            return this.filter?this.data.filter(e=>{
+                return e.name.includes(this.filter)
+            }):this.data
+        },
+        
     },
 };
 </script>

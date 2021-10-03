@@ -6,7 +6,12 @@
     >
   </div>
   
- 
+  <div
+    v-if="invalid"
+    class="w-25 mb-1 validate_msg"
+  >
+    Invalid organisation name
+  </div>
   <div
     class="input-group w-25"
   >
@@ -20,7 +25,7 @@
     >
     <button
       class="btn btn-outline-primary"
-      type="button"
+      @click="fetchOrgs"
     >
       {{ $t('search') }}
     </button>
@@ -70,5 +75,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "style.scss";
+@import "home.scss";
 </style>

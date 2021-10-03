@@ -49,21 +49,23 @@
         class="input-group"
       >
         <input
-          v-model="filter"
+          v-model="fInput"
           class="form-control"
           :placeholder="$t('filter')"
           @keypress.esc="filter=''"
+          @keypress.enter="filter=fInput"
         >
         <button
           class="btn btn-success"
+          @click="filter=fInput"
         >
           {{ $t('filter_btn') }}
         </button>
       </div>
       <button
-        v-if="filter"
+        v-if="fInput"
         class="btn btn-warning ms-2"
-        @click="filter=''"
+        @click="fInput='',filter=''"
       >
         {{ $t('clr_btn') }}
       </button>
@@ -80,7 +82,10 @@
   <div
     class="w-100"
   >
-    <super-table :data="Repositories" />
+    <super-table
+      :data="Repositories"
+      :filter="filter"
+    />
   </div>
 </template>
 <script>
@@ -98,6 +103,7 @@ export default {
         return{
             activeTab:1,
             filter:'',
+            fInput:'',
         }
     },
     computed:{
@@ -128,5 +134,5 @@ export default {
 </script>
 
 <style lang='scss'>
-@import 'style.scss';
+@import 'table.scss';
 </style>
