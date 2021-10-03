@@ -10,5 +10,6 @@
     "tab2":"Karta",
     "filter":"Filter",
     "filter_btn":"Qabul",
-    "clr_btn":"Tozalash"
+    "clr_btn":"Tozalash",
+    "validate_msg":"Nomalum organizatsiya"
   }

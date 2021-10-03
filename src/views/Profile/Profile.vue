@@ -134,5 +134,5 @@ export default {
 </script>
 
 <style lang='scss'>
-@import 'table.scss';
+@import 'profile.scss';
 </style>

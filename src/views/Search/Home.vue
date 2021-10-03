@@ -10,7 +10,7 @@
     v-if="invalid"
     class="w-25 mb-1 validate_msg"
   >
-    Invalid organisation name
+    {{ $t('validate_msg') }}
   </div>
   <div
     class="input-group w-25"

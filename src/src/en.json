@@ -9,5 +9,7 @@
   "tab1":"Table",
   "tab2":"Card",
   "filter":"Filter",
-  "filter_btn":"Clear"
+  "filter_btn":"Append",
+  "clr_btn":"Clear",
+  "validate_msg":"Invalid organisation name"
 }
