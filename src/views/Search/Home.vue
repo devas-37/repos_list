@@ -5,19 +5,30 @@
       alt="GitHub logo"
     >
   </div>
-  <div class="search">
-    <input
-      v-model="orgsName"
-      class="form-control w-50 d-inline-block"
-      placeholder="Type organisation name"
-      @keypress.enter="fetchOrgs"
+  
+  <div class="container">
+    <div
+      v-if="invalid"
+      class="validate_msg"
     >
-    <button
-      class="btn btn-primary ms-2"
-      @click="fetchOrgs"
-    >
-      Search
-    </button>
+      <span>Invalid organisation name</span>
+    </div>
+    <div class="search">
+      <input
+        v-model="orgName"
+        class="form-control w-50"
+        :class="{'invalidate':invalid===true}"
+        :placeholder="$t('placeholder')"
+        @keypress.enter="fetchOrgs"
+        @keydown="invalid=false"
+      >
+      <button
+        class="btn btn-primary ms-2"
+        @click="fetchOrgs"
+      >
+        {{ $t('search') }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -30,6 +41,7 @@ export default {
     data() {
         return{
             orgName:'',
+            invalid:false,
         }
     },
     computed:{
@@ -37,25 +49,25 @@ export default {
     },
     methods: {
         fetchOrgs() {
-            if (this.orgsName) {
+            if (this.orgName) {
                 axios
-                    .get('https://api.github.com/users/' + this.orgsName)
+                    .get('https://api.github.com/users/' + this.orgName)
                     .then((res) => {
                         if (res.data){
                             this.$store.commit('setOrganisation',res.data)
                             this.fetchRepositories()
                         }
-                    }).catch((res)=>{
-                        console.log(res)
+                    }).catch(()=>{
+                        this.invalid=true
                     });
             }
         },
         fetchRepositories(){
             axios
-                .get('https://api.github.com/users/' + this.orgsName+'/repos')
+                .get('https://api.github.com/users/' + this.orgName+'/repos')
                 .then((res) => {
                     if (res.data){
-                        console.log()
+                        this.$store.commit('setRepositories',res.data)
                         this.$router.push('/table')
                     }
                 })
@@ -63,6 +75,6 @@ export default {
     },
 };
 </script>
-<style type="scss">
+<style lang="scss">
 @import "style.scss";
 </style>

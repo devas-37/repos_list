@@ -1,0 +1,73 @@
+<template>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            {{ $t('t1') }}
+          </th>
+          <th>
+            {{ $t('t2') }}
+          </th>
+          <th>
+            {{ $t('t3') }}
+          </th>
+          <th>
+            {{ $t('t4') }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(repository, index) in data"
+          :key="index"
+        >
+          <td class="repos_name">
+            <a
+              :href="'https://github.com/'+Organisation.login+'/'+repository.name"
+              target="_blank"
+            >{{ repository.name }}</a> 
+          </td>
+          <td
+            class="description" 
+          >
+            <span>{{ repository.description }}</span>
+          </td>
+          <td class="lang">
+            {{ repository.language }}
+          </td>
+          <td>
+            <span class="stars">
+              <img
+                src="../../assets/star.svg"
+                alt="Star"
+                width="20"
+              ><span>{{ repository.stargazers_count }}</span>
+            </span>
+          </td>
+        </tr>
+        <tbody />
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import {mapGetters} from 'vuex'
+export default {
+    name: 'SuperTable',
+    props: {
+        data:{
+            type:Array,
+            default:()=>[],
+        },
+    },
+    computed:{
+        ...mapGetters(['Organisation']),
+    },
+};
+</script>
+
+<style scoped lang="scss">
+@import 'supertable.scss'
+</style>

@@ -9,7 +9,6 @@ export default createStore({
     mutations: {
         setRepositories:(state,payload)=>{
             state.repositories=payload
-            state.fullName=payload.full_name
         },
         setOrganisation:(state,payload)=>{
             state.organisation=payload

@@ -1,0 +1,64 @@
+    .container {
+        text-align: left;
+        display: grid;
+        border: 1px solid #003449;
+        padding: 20px;
+
+        thead {
+            th {
+                padding: 10px 20px;
+                font-size: 17px;
+                font-weight: bold;
+                color: #23292f;
+            }
+        }
+
+        table {
+
+            font-size: 14px;
+
+            tr {
+                .description {
+                    max-width: 300px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .lang {
+                    width: 20%;
+                }
+            }
+
+            td {
+                padding: 14px 20px;
+                border-top: 1px solid #efefef;
+                .stars {
+                    display: flex;
+                    align-items: center;
+                    img{
+                        margin-right: 10px;
+                    }
+                    * {
+                        display: inline-block;
+                    }
+                }
+                &.repos_name {
+                    width: 20%;
+                    font-size: 16px;
+                    font-weight: bold;
+
+                    a {
+
+                        color: #00b0d3;
+                    }
+                }
+            }
+
+
+        }
+        .repos_card {
+            border: 1px solid silver;
+            padding: 16px;
+            border-radius: 5px;
+        }
+    }

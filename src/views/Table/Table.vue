@@ -1,5 +1,5 @@
 <template>
-  <div class="result">
+  <div class="container">
     <div class="profile_section">
       <div>
         <div class="avatar">
@@ -42,67 +42,45 @@
           </ul>
         </div>
       </div>
-      <div class="tabs">
-        <span
-          :class="{'active_tab':activeTab===1}"
-          @click="activeTab=1"
-        >Table</span>
-        <span
-          :class="{'active_tab':activeTab===2}"
-          @click="activeTab=2"
-        >Card</span>
-      </div>
     </div>
-    
-
-    <!--  -->
   </div>
+
+  <div class="container tabs">
+    <span
+      :class="{'active_tab':activeTab===1}"
+      @click="activeTab=1"
+    >{{ $t('tab1') }}</span>
+    <span
+      :class="{'active_tab':activeTab===2}"
+      @click="activeTab=2"
+    >{{ $t('tab2') }}</span>
+    <div class="paginate">
+      <pagination
+        :max="Organisation.public_repos"
+        :per-page="30"
+        @onChange="fetchPage"
+      /> 
+    </div>
+  </div>
+
   <div
     v-if="activeTab===1"
     class="result_table"
   >
-    <div class="repos_table">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Language</th>
-            <th>Stars</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(repository, index) in Repositories"
-            :key="index"
-          >
-            <td>
-              <a
-                :href="'https://github.com/'+Organisation.login+'/'+repository.name"
-                target="_blank"
-              >{{ repository.name }}</a> 
-            </td>
-            <td>{{ repository.description }}</td>
-            <td>{{ repository.language }}</td>
-            <td class="stars">
-              <img
-                src="../../assets/star.svg"
-                alt="Star"
-                width="20"
-              ><span>{{ repository.stargazers_count }}</span>
-            </td>
-          </tr>
-          <tbody />
-        </tbody>
-      </table>
-    </div>
+    <super-table :data="Repositories" />
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import axios from 'axios';
+import SuperTable from '../../components/SuperTable/SuperTable.vue'
+import Pagination from '../../components/Pagination/Pagination.vue'
+import axios from 'axios'
 export default {
     name:'Table',
+    components:{
+        SuperTable,
+        Pagination,
+    },
     data(){
         return{
             activeTab:1,
@@ -112,23 +90,25 @@ export default {
         ...mapGetters(['Repositories','Organisation']),
     },
     mounted(){
-        axios
-            .get('https://api.github.com/users/facebook/repos',{
-                params:{
-                    per_page:30,
-                    page:1,
-                },
-            })
-            .then((res) => {
-                this.$store.commit('setRepositories',res.data)
-             
-            });
         if(!this.Organisation.login){
             this.$router.push('/')
         }
     },
     methods:{
-
+        fetchPage(number){
+            axios
+                .get('https://api.github.com/users/' + this.Organisation.login+'/repos',{
+                    params:{
+                        page:number,
+                    },
+                })
+                .then((res) => {
+                    if (res.data){
+                        this.$store.commit('setRepositories',res.data)
+                    }
+                })
+            console.log(number)
+        },
     },
 }
 </script>

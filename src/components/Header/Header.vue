@@ -2,7 +2,7 @@
   <div class="header">
     <div>
       <img
-        src="../assets/logo_white.svg"
+        src="../../assets/logo_white.svg"
         alt="Github"
         width="32"
       >
@@ -11,34 +11,36 @@
           class="home"
           to="/"
         >
-          Organisation finder
+          {{ $t("title") }}
         </router-link>
       </h4>
     </div>
  
     <div class="language">
-      <span @click="showContext=!showContext">{{ lang }}</span>
+      <span
+        @click.stop="showContext=!showContext"
+        @mouseenter="showContext=true"
+      >{{ lang }}</span>
       <ul
         :class="{'showContext':showContext}"
-        @click="showContext=false"
       >
         <li @click="$emit('onChange','RUS')">
           <img
-            src="../assets/flags/RUS.svg"
+            src="../../assets/flags/RUS.svg"
             alt="Russian"
             width="20"
           > RUS
         </li>
         <li @click="$emit('onChange','UZB')">
           <img
-            src="../assets/flags/UZB.svg"
+            src="../../assets/flags/UZB.svg"
             alt="Russian"
             width="20"
           > UZB
         </li>
         <li @click="$emit('onChange','ENG')">
           <img
-            src="../assets/flags/ENG.svg"
+            src="../../assets/flags/ENG.svg"
             alt="Russian"
             width="20"
           > ENG
@@ -61,6 +63,11 @@ export default {
         return{
             showContext:false,
         }
+    },
+    mounted(){
+        document.addEventListener('click',()=>{
+            this.showContext=false
+        })
     },
 }
 </script>

@@ -1,3 +1,11 @@
 {
-  "search": "hello i18n !!"
+  "search": "Search",
+  "title":"Organisation finder",
+  "placeholder":"Type organisation name...",
+  "t1":"Repository",
+  "t2":"Description",
+  "t3":"Language",
+  "t4":"Stars",
+  "tab1":"Table",
+  "tab2":"Card"
 }
