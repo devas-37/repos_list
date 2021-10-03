@@ -25,7 +25,12 @@ export default {
         },
     },
     mounted(){
-
+        let l={
+            ru:'RUS',
+            en:'ENG',
+            uz:'UZB',
+        }
+        this.lang=l[localStorage.getItem('language')||'RUS']
         this.$i18n.locale=localStorage.getItem('language')||'ru'
     },
     methods:{
